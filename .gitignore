@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+.idea
+*.iml
+# Datasource local storage ignored files
+/../../../../../:\GeekBrainsUniversity\java\Algorithms_HW\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# Project exclude paths
+/target/
