@@ -7,4 +7,6 @@ public interface Dequeue<E> extends Queue<E> {
     boolean insertLeft(E value);
 
     E removeRight();
+
+    E peekBack();
 }

@@ -16,10 +16,15 @@ public class ExamplesOfStructures {
         stack.push(3);
         stack.push(4);
         stack.push(5);
+        System.out.print("Before stack pop: ");
+        stack.display();
 
         while (!stack.isEmpty()) {
-            System.out.println("From stack: " + stack.pop());
+            stack.pop();
+            System.out.print("After stack pop: ");
+            stack.display();
         }
+        System.out.println();
 
         Queue<Integer> queue = new QueueImpl<>(5);
         queue.insert(1);
@@ -27,16 +32,16 @@ public class ExamplesOfStructures {
         queue.insert(3);
         queue.insert(4);
         queue.insert(5);
+        System.out.print("Queue before remove: ");
+        queue.display();
 
         while (!queue.isEmpty()) {
-            System.out.print("Queue before remove: ");
-            queue.display();
-            System.out.println("Peek: " + queue.peekFront());
+            System.out.println("Head on value: " + queue.peekFront());
             queue.remove();
-            System.out.print("Queue after remove: ");
+            System.out.print("After before remove: ");
             queue.display();
-            System.out.println();
         }
+        System.out.println();
 
         Queue<Integer> priorityQueue = new PriorityQueue<>(5);
         priorityQueue.insert(1);
@@ -44,14 +49,13 @@ public class ExamplesOfStructures {
         priorityQueue.insert(3);
         priorityQueue.insert(4);
         priorityQueue.insert(5);
+        System.out.print("PriorityQueue before remove: ");
+        priorityQueue.display();
 
         while (!priorityQueue.isEmpty()) {
-            System.out.print("PriorityQueue before remove: ");
-            priorityQueue.display();
             priorityQueue.remove();
             System.out.print("PriorityQueue after remove: ");
             priorityQueue.display();
-            System.out.println();
         }
     }
 }

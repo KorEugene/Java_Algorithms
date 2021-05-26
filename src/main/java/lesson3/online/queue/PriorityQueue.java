@@ -57,7 +57,21 @@ public class PriorityQueue<E extends Comparable<? super E>> implements Queue<E> 
     }
 
     @Override
-    public void display() {
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = size - 1; i >= 0; i--) {
+            sb.append(data[i]);
+            if (i >= 1) {
+                sb.append(", ");
+            }
+        }
 
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
+    public void display() {
+        System.out.println(this);
     }
 }
