@@ -1,4 +1,4 @@
-package lesson2.online;
+package lesson2.online.arraylist;
 
 import java.util.Arrays;
 

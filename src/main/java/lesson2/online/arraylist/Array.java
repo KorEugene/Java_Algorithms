@@ -1,4 +1,4 @@
-package lesson2.online;
+package lesson2.online.arraylist;
 
 public interface Array<E> {
 

@@ -15,7 +15,7 @@ public class DequeueImpl<E> extends QueueImpl<E> implements Dequeue<E> {
             return false;
         }
 
-        if (head == 0) {
+        if (head == HEAD_DEFAULT) {
             head = data.length;
         }
 
@@ -32,7 +32,7 @@ public class DequeueImpl<E> extends QueueImpl<E> implements Dequeue<E> {
             return null;
         }
 
-        if (tail == -1) {
+        if (tail == TAIL_DEFAULT) {
             tail = data.length - 1;
         }
 
