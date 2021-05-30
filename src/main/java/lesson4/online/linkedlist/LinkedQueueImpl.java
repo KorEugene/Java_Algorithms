@@ -4,7 +4,7 @@ import lesson3.online.queue.Queue;
 
 public class LinkedQueueImpl<E> implements Queue<E> {
 
-    private final TwoSideLinkedList<E> data;
+    protected final TwoSideLinkedList<E> data;
 
     public LinkedQueueImpl() {
         this.data = new TwoSideLinkedListImpl<>();
@@ -43,6 +43,6 @@ public class LinkedQueueImpl<E> implements Queue<E> {
 
     @Override
     public void display() {
-
+        data.display();
     }
 }

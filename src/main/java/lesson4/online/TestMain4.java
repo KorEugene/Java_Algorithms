@@ -1,9 +1,6 @@
 package lesson4.online;
 
-import lesson4.online.linkedlist.LinkedList;
-import lesson4.online.linkedlist.SimpleLinkedListImpl;
-import lesson4.online.linkedlist.TwoSideLinkedList;
-import lesson4.online.linkedlist.TwoSideLinkedListImpl;
+import lesson4.online.linkedlist.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +11,8 @@ public class TestMain4 {
     public static void main(String[] args) {
 //        testLinkedList();
         testForEach();
+//        testLinkedQueue();
+        testLinkedDequeue();
     }
 
     private static void testLinkedList() {
@@ -36,6 +35,42 @@ public class TestMain4 {
         linkedList.remove(2);
 
         linkedList.display();
+    }
+
+    private static void testLinkedQueue() {
+        LinkedQueueImpl<Integer> linkedQueue = new LinkedQueueImpl<>();
+        linkedQueue.insert(1);
+        linkedQueue.insert(2);
+        linkedQueue.insert(3);
+        linkedQueue.insert(4);
+
+        linkedQueue.display();
+
+        linkedQueue.remove();
+
+        linkedQueue.display();
+    }
+
+    private static void testLinkedDequeue() {
+        LinkedDequeueImpl<Integer> linkedDequeue = new LinkedDequeueImpl<>();
+        linkedDequeue.insert(1);
+        linkedDequeue.insert(2);
+        linkedDequeue.insert(3);
+
+        linkedDequeue.display();
+
+        linkedDequeue.remove();
+
+        linkedDequeue.display();
+
+        linkedDequeue.insertLeft(4);
+        linkedDequeue.insertLeft(5);
+
+        linkedDequeue.display();
+
+        linkedDequeue.removeRight();
+
+        linkedDequeue.display();
     }
 
     private static void testForEach() {
