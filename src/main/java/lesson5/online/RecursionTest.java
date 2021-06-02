@@ -1,12 +1,16 @@
 package lesson5.online;
 
-import lesson5.online.backpack.BackPack;
+import lesson5.online.backpack.Backpack;
 import lesson5.online.stuff.*;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 public class RecursionTest {
+
+    private static final Set<Stuff> MAXIMUM_COST_SELECTION = new LinkedHashSet<>();
+    private static Stuff pos;
 
     public static void main(String[] args) {
 
@@ -22,12 +26,18 @@ public class RecursionTest {
         System.out.println("Raise 4 to the power of -2: " + raiseNumberToThePowerOf(4, -2));
         System.out.println();
 
-        BackPack backPack = new BackPack(6);
+        Backpack backPack = new Backpack(7);
         System.out.println(backPack.toString());
         System.out.println();
         Stuff[] stuffs = {new Book(), new Binoculars(), new FirstAidKit(), new Laptop(), new Pot()};
         System.out.println("Stuff to choose: ");
         Stream.of(stuffs).forEach(System.out::println);
+
+        System.out.println();
+        System.out.print("Maximum cost set: ");
+        System.out.println(getMaximumCostStuff(backPack, stuffs));
+        System.out.println("Summary cost: " + getCurrentPrice(MAXIMUM_COST_SELECTION));
+        System.out.println("Summary weight: " + MAXIMUM_COST_SELECTION.stream().mapToInt(Stuff::getWeight).sum());
 
     }
 
@@ -40,6 +50,43 @@ public class RecursionTest {
     }
 
     //    2. Написать программу «Задача о рюкзаке» с помощью рекурсии.
-//    private static Set<Stuff>
+    private static Set<Stuff> getMaximumCostStuff(Backpack backPack, Stuff[] stuffs) {
+        pos = stuffs[0];
+        getSelection(backPack, stuffs);
+        return MAXIMUM_COST_SELECTION;
+    }
 
+    private static void getSelection(Backpack backPack, Stuff[] stuffs) {
+
+        for (int i = 0; i < stuffs.length; i++) {
+            if ((backPack.getCurrentWeight() + stuffs[i].getWeight()) <= backPack.getMaximumWeight()) {
+                backPack.addStuff(stuffs[i]);
+            } else {
+                break;
+            }
+        }
+
+        if (getCurrentPrice(MAXIMUM_COST_SELECTION) < getCurrentPrice(backPack.getCurrentStuff())) {
+            MAXIMUM_COST_SELECTION.clear();
+            MAXIMUM_COST_SELECTION.addAll(backPack.getCurrentStuff());
+        }
+        backPack.removeAllStuff();
+
+        rotate(stuffs);
+        if (pos.equals(stuffs[0])) {
+            return;
+        }
+        getSelection(backPack, stuffs);
+    }
+
+    private static void rotate(Stuff[] stuffs) {
+        Stuff tmp;
+        tmp = stuffs[0];
+        System.arraycopy(stuffs, 1, stuffs, 0, stuffs.length - 1);
+        stuffs[stuffs.length - 1] = tmp;
+    }
+
+    private static int getCurrentPrice(Set<Stuff> stuffSet) {
+        return stuffSet.stream().mapToInt(Stuff::getCost).sum();
+    }
 }
