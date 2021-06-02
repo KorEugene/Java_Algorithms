@@ -8,28 +8,28 @@ public class DequeueExample {
     public static void main(String[] args) {
 
         Dequeue<Integer> dequeue = new DequeueImpl<>(10);
-        dequeue.insert(1);
+        dequeue.insertRight(1);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(2);
+        dequeue.insertRight(2);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(3);
+        dequeue.insertRight(3);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(4);
+        dequeue.insertRight(4);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(5);
+        dequeue.insertRight(5);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(6);
+        dequeue.insertRight(6);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(7);
+        dequeue.insertRight(7);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
-        dequeue.insert(8);
+        dequeue.insertRight(8);
         System.out.print("Dequeue after insertRight: ");
         dequeue.display();
         System.out.println("Dequeue size: " + dequeue.size());
@@ -37,10 +37,10 @@ public class DequeueExample {
         System.out.println("Tail at value: " + dequeue.peekBack());
         System.out.println();
 
-        dequeue.remove();
+        dequeue.removeLeft();
         System.out.print("Dequeue after removeLeft: ");
         dequeue.display();
-        dequeue.remove();
+        dequeue.removeLeft();
         System.out.print("Dequeue after removeLeft: ");
         dequeue.display();
         System.out.println("Dequeue size: " + dequeue.size());

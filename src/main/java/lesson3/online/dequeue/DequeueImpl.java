@@ -8,7 +8,11 @@ public class DequeueImpl<E> extends QueueImpl<E> implements Dequeue<E> {
         super(maxSize);
     }
 
-    //    insertRight - это insert из queueImpl
+    @Override
+    public boolean insertRight(E value) {
+        return super.insert(value);
+    }
+
     @Override
     public boolean insertLeft(E value) {
         if (isFull()) {
@@ -25,7 +29,6 @@ public class DequeueImpl<E> extends QueueImpl<E> implements Dequeue<E> {
         return true;
     }
 
-    //    removeLeft - это remove из queueImpl
     @Override
     public E removeRight() {
         if (isEmpty()) {
@@ -40,6 +43,11 @@ public class DequeueImpl<E> extends QueueImpl<E> implements Dequeue<E> {
         size--;
 
         return value;
+    }
+
+    @Override
+    public E removeLeft() {
+        return super.remove();
     }
 
     @Override

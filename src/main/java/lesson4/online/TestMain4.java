@@ -53,13 +53,13 @@ public class TestMain4 {
 
     private static void testLinkedDequeue() {
         LinkedDequeueImpl<Integer> linkedDequeue = new LinkedDequeueImpl<>();
-        linkedDequeue.insert(1);
-        linkedDequeue.insert(2);
-        linkedDequeue.insert(3);
+        linkedDequeue.insertRight(1);
+        linkedDequeue.insertRight(2);
+        linkedDequeue.insertRight(3);
 
         linkedDequeue.display();
 
-        linkedDequeue.remove();
+        linkedDequeue.removeLeft();
 
         linkedDequeue.display();
 
