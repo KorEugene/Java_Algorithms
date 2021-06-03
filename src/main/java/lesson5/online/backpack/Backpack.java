@@ -2,44 +2,47 @@ package lesson5.online.backpack;
 
 import lesson5.online.stuff.Stuff;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
 public class Backpack {
 
-    private final int maximumWeight;
-    private int currentWeight;
-    private final Set<Stuff> currentStuff;
+    private List<Stuff> bestItems;
+    private final int maxWeight;
+    private int bestPrice;
 
-    public Backpack(int maximumWeight) {
-        this.maximumWeight = maximumWeight;
-        this.currentStuff = new LinkedHashSet<>();
+    public Backpack(int maxWeight) {
+        this.maxWeight = maxWeight;
     }
 
-    public int getMaximumWeight() {
-        return maximumWeight;
+    public List<Stuff> getBestItems() {
+        return bestItems;
     }
 
-    public int getCurrentWeight() {
-        return currentWeight;
+    public int getMaxWeight() {
+        return maxWeight;
     }
 
-    public Set<Stuff> getCurrentStuff() {
-        return currentStuff;
+    public int getBestPrice() {
+        return bestPrice;
     }
 
-    public void addStuff(Stuff stuff) {
-        currentStuff.add(stuff);
-        currentWeight += stuff.getWeight();
+    public void setBestItems(List<Stuff> bestItems) {
+        this.bestItems = bestItems;
     }
 
-    public void removeAllStuff() {
-        currentStuff.clear();
-        currentWeight = 0;
+    public void setBestPrice(int bestPrice) {
+        this.bestPrice = bestPrice;
     }
 
-    @Override
-    public String toString() {
-        return '{' + "BackPack: " + "maximumWeight=" + maximumWeight + '}';
+    public int calculateWeight(List<Stuff> stuffs) {
+        return stuffs.stream().mapToInt(Stuff::getWeight).sum();
+    }
+
+    public int calculateCost(List<Stuff> stuffs) {
+        return stuffs.stream().mapToInt(Stuff::getCost).sum();
+    }
+
+    public List<Stuff> GetBestSet() {
+        return bestItems;
     }
 }
