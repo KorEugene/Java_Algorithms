@@ -9,10 +9,12 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
     private class NodeAndParent {
         private Node<E> current;
         private Node<E> parent;
+        private int depthIndex;
 
         public NodeAndParent(Node<E> current, Node<E> parent) {
             this.current = current;
             this.parent = parent;
+            this.depthIndex = 0;
         }
     }
 
@@ -37,38 +39,23 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
         Node<E> node = new Node<>(value);
 
         NodeAndParent nodeAndParent = doFind(value);
+        if (nodeAndParent.depthIndex >= maxDepth) {
+            return false;
+        }
         if (nodeAndParent.current != null) {
             return false;
         }
         Node<E> previous = nodeAndParent.parent;
         if (previous == null) {
-            node.setDepthIndex(1);
             root = node;
         } else if (previous.isLeftChild(value)) {
-            node.setDepthIndex(previous.getDepthIndex() + 1);
-            if (limitExceeded(node)) {
-                return false;
-            } else {
                 previous.setLeftChild(node);
-            }
         } else {
-            node.setDepthIndex(previous.getDepthIndex() + 1);
-            if (limitExceeded(node)) {
-                return false;
-            } else {
                 previous.setRightChild(node);
-            }
         }
 
         size++;
         return true;
-    }
-
-    private boolean limitExceeded(Node<E> node) {
-        if (maxDepth == DEFAULT_DEPTH_LIMIT) {
-            return false;
-        }
-        return node.getDepthIndex() > maxDepth;
     }
 
     @Override
@@ -78,13 +65,18 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
     }
 
     private NodeAndParent doFind(E value) {
+
         Node<E> current = root;
         Node<E> previous = null;
+
+        NodeAndParent nodeAndParent = new NodeAndParent(current, previous);
 
         while (current != null) {
 
             if (current.getValue().equals(value)) {
-                return new NodeAndParent(current, previous);
+                nodeAndParent.current = current;
+                nodeAndParent.parent = previous;
+                return nodeAndParent;
             }
 
             previous = current;
@@ -93,9 +85,12 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E> {
             } else {
                 current = current.getRightChild();
             }
+            nodeAndParent.depthIndex++;
         }
 
-        return new NodeAndParent(null, previous);
+        nodeAndParent.current = current;
+        nodeAndParent.parent = previous;
+        return nodeAndParent;
     }
 
     @Override
